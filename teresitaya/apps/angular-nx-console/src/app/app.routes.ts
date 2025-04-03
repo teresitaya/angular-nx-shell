@@ -7,4 +7,14 @@ export const appRoutes: Route[] = [
         component: NxWelcomeComponent,
         pathMatch: 'full',
       },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('@teresitaya/account').then((m) => m.AccountComponent),
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('@teresitaya/dashboard').then((m) => m.DashboardComponent),
+      },
 ];

@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@teresitaya/dashboard": ["libs/dashboard/src/index.ts"]
+      "@teresitaya/account": ["libs/features/account/src/index.ts"],
+      "@teresitaya/core": ["libs/shared/core/src/index.ts"],
+      "@teresitaya/dashboard": ["libs/features/dashboard/src/index.ts"],
+      "@teresitaya/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
