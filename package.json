@@ -2,7 +2,9 @@
   "name": "@angular-nx-shell/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:all": "npx nx run-many -t build"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~19.2.0",
