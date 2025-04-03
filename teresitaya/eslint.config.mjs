@@ -20,6 +20,18 @@ export default [
               sourceTag: '*',
               onlyDependOnLibsWithTags: ['*'],
             },
+            {
+              sourceTag: 'type:feature',
+              onlyDependOnLibsWithTags: ['type:core', 'type:ui'],
+            },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui'],
+            },
+            {
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
+            }
           ],
         },
       ],
