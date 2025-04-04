@@ -1,8 +1,14 @@
 {
-  "name": "@teresitaya/source",
-  "version": "0.0.0",
+  "name": "angular-nx-console",
+  "version": "0.0.1",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:all": "nx run-many --target=build --configuration=production",
+    "test:all": "nx run-many --target=test",
+    "lint:all": "nx run-many --target=lint",
+    "serve:all": "nx run-many --target=serve --parallel",
+    "affected:graph": "nx graph --affected"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~19.2.0",
@@ -15,7 +21,9 @@
     "@primeng/themes": "^19.0.10",
     "@tailwindcss/cli": "^4.1.2",
     "@tailwindcss/postcss": "^4.1.2",
+    "ngx-cookie-service": "^19.1.2",
     "postcss": "^8.5.3",
+    "primeicons": "^7.0.0",
     "primeng": "^19.0.10",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.2",

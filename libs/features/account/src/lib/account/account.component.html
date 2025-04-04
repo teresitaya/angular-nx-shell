@@ -1,1 +1,50 @@
-<lib-card [title]="title"></lib-card>
+<div class="flex flex-col items-center justify-center h-screen w-full">
+  <p-card class="w-120">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" pFocusTrap class="px-12 py-4 flex flex-col gap-6" novalidate>
+      <p-iconfield>
+        <p-inputicon>
+          <i class="pi pi-at"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          id="email"
+          [pAutoFocus]="true"
+          placeholder="Email"
+          [fluid]="true"
+          formControlName="email"
+        />
+      </p-iconfield>
+      
+      <p-iconfield>
+        <p-inputicon>
+          <i class="pi pi-asterisk"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          id="password"
+          placeholder="Password"
+          [fluid]="true"
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+        />
+        <p-inputicon (click)="togglePassword()" [ngStyle]="{'cursor': 'pointer'}" position="right">
+          <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+        </p-inputicon>
+      </p-iconfield>
+
+      <p-button 
+        type="submit" 
+        label="Login" 
+        [rounded]="true" 
+        styleClass="w-full" 
+        (onClick)="onSubmit()" 
+        [loading]="saving"
+        [disabled]="saving || (!loginForm.valid && !loginForm.touched)"
+      >
+        <ng-template pTemplate="loadingicon">
+          <i class="pi pi-spin pi-spinner"></i>
+        </ng-template>
+      </p-button>
+    </form>
+  </p-card>
+</div>

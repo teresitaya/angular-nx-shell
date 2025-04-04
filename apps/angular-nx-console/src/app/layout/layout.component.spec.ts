@@ -3,10 +3,12 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { LayoutComponent } from './layout.component';
+import { ThemeService } from '@teresitaya/core';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
   let fixture: ComponentFixture<LayoutComponent>;
+  let themeService: ThemeService;
 
   beforeEach(async () => {
     // Mock matchMedia
@@ -30,12 +32,14 @@ describe('LayoutComponent', () => {
         RouterModule.forRoot([]),
         ButtonModule,
         CardModule
-      ]
+      ],
+      providers: [ThemeService]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
+    themeService = TestBed.inject(ThemeService);
     fixture.detectChanges();
   });
 
@@ -43,7 +47,7 @@ describe('LayoutComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize with light mode by default', () => {
-    expect(component.isDarkMode).toBeFalsy();
+  it('should initialize with light theme by default', () => {
+    expect(themeService.getCurrentTheme()).toBe('light');
   });
 });

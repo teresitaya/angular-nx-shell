@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardComponent } from './dashboard.component';
+import { HeaderComponent } from './header.component';
 import { ThemeService } from '@teresitaya/core';
+import { ButtonModule } from 'primeng/button';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
+  let themeService: ThemeService;
 
   beforeEach(async () => {
     // Mock matchMedia
@@ -15,7 +18,7 @@ describe('DashboardComponent', () => {
         media: query,
         onchange: null,
         addListener: jest.fn(),
-        removeListener: jest.fn(),  
+        removeListener: jest.fn(),
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
         dispatchEvent: jest.fn(),
@@ -23,16 +26,25 @@ describe('DashboardComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [DashboardComponent],
+      imports: [
+        HeaderComponent, 
+        ButtonModule,
+        RouterTestingModule
+      ],
       providers: [ThemeService]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    themeService = TestBed.inject(ThemeService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize with light theme by default', () => {
+    expect(themeService.getCurrentTheme()).toBe('light');
   });
 });
