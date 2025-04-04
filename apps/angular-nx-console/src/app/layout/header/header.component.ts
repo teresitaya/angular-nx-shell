@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
+import { ThemeService } from '@teresitaya/core';
 
 @Component({
   selector: 'app-header',
@@ -12,26 +13,17 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent implements OnInit {
   isDarkMode = false;
 
+  private readonly _themeService = inject(ThemeService);
+
   ngOnInit(): void {
-    const savedPrefersColorScheme = localStorage.getItem('prefers-color-scheme');
-    if (savedPrefersColorScheme === 'dark') {
-      this.isDarkMode = true;
-    } else if (savedPrefersColorScheme === 'light') {
-      this.isDarkMode = false;
-    } else {
-      this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    this.toggleDarkMode(this.isDarkMode);
+    this.isDarkMode = this._themeService.getCurrentTheme() === 'dark';
+    this._themeService.theme$.subscribe((theme) => {
+      this.isDarkMode = theme === 'dark';
+    });
   }
 
-  toggleDarkMode(isDark: boolean) {
-    const element = document.querySelector('html');
-    if (element) {
-      const toggleClass = isDark ? 'my-app-dark' : 'my-app-light';
-      element.classList.remove(isDark ? 'my-app-light' : 'my-app-dark');
-      element.classList.add(toggleClass);
-      localStorage.setItem('prefers-color-scheme', isDark ? 'dark' : 'light');
-      this.isDarkMode = isDark;
-    }
+  toggleDarkMode() {
+    this._themeService.toggleTheme();
+    this.isDarkMode = !this.isDarkMode;
   }
 }
