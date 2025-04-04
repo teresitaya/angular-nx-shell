@@ -2,7 +2,12 @@
   "name": "@teresitaya/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:all": "nx run-many --target=build --configuration=production",
+    "test:all": "nx run-many --target=test",
+    "lint:all": "nx run-many --target=lint",
+    "affected:graph": "nx graph --affected"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~19.2.0",
