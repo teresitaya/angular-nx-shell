@@ -1,1 +1,35 @@
-<lib-card [title]="title"></lib-card>
+<div class="flex flex-col items-center justify-center h-screen w-full">
+  <p-card class="w-120">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" pFocusTrap class="px-12 py-4 flex flex-col gap-6" novalidate>
+      <p-iconfield>
+        <p-inputicon>
+          <i class="pi pi-user"> </i>
+        </p-inputicon>
+        <input
+          pInputText
+          id="email"
+          [pAutoFocus]="true"
+          placeholder="Email"
+          [fluid]="true"
+          formControlName="email"
+        />
+      </p-iconfield>
+      <p-iconfield>
+        <p-inputicon>
+          <i class="pi pi-password"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          id="input"
+          placeholder="Password"
+          [pAutoFocus]="true"
+          [fluid]="true"
+          type="password"
+          formControlName="password"
+        />
+      </p-iconfield>
+
+        <p-button type="submit" label="Login" [rounded]="true" styleClass="w-full" (onClick)="onSubmit()" [disabled]="saving || (!loginForm.valid && !loginForm.dirty)" />
+    </form>
+  </p-card>
+</div>
