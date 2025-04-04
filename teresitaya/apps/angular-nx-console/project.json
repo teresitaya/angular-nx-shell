@@ -15,14 +15,14 @@
         "browser": "apps/angular-nx-console/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/angular-nx-console/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
+        "inlineStyleLanguage": "css",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/angular-nx-console/public"
           }
         ],
-        "styles": ["apps/angular-nx-console/src/styles.scss"],
+        "styles": ["apps/angular-nx-console/src/styles.css"],
         "scripts": []
       },
       "configurations": {
