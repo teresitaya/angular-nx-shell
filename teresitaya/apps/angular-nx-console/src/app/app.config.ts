@@ -4,7 +4,7 @@ import { appRoutes } from './app.routes';
 import { withEnabledBlockingInitialNavigation } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Lara from '@primeng/themes/lara';
+import MyPreset from './preset';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Lara,
+        preset: MyPreset,
         options: {
           darkModeSelector: '.my-app-dark'
         }

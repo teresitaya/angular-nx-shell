@@ -1,8 +1,22 @@
-<section class="flex justify-between items-center py-4 px-12 w-full">
-    <h1 class="text-3xl font-bold underline">Angular NX Console</h1>
-    <div class="flex items-center justify-end gap-4">
-        <p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()"/>
-        <p-button  routerLink="/login" label="Account"></p-button>
-        <p-button  routerLink="/dashboard" label="Dashboard"></p-button>
+<div class="flex flex-col gap-8 h-screen w-full">
+    <section class="flex justify-between items-center py-4 px-12 w-full">
+        <h1 class="text-3xl font-bold underline">Angular NX Console</h1>
+        <div class="flex items-center justify-end gap-4">
+            <p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()"/>
+            <p-button  routerLink="/login" label="Account"></p-button>
+            <p-button  routerLink="/dashboard" label="Dashboard"></p-button>
+        </div>
+    </section>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-12">
+        <p-card>
+            content
+        </p-card>
+        <p-card>
+            content
+        </p-card>
+        <p-card>
+            content
+        </p-card>
     </div>
-</section>
+</div>
