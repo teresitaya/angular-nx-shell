@@ -13,17 +13,25 @@ export class LayoutComponent implements OnInit {
   isDarkMode = false;
 
   ngOnInit(): void {
-    this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches || document.querySelector('html')?.classList.contains('my-app-dark') || false;
-    if(this.isDarkMode){
-      this.toggleDarkMode();
+    const savedPrefersColorScheme = localStorage.getItem('prefers-color-scheme');
+    if (savedPrefersColorScheme === 'dark') {
+      this.isDarkMode = true;
+    } else if (savedPrefersColorScheme === 'light') {
+      this.isDarkMode = false;
+    } else {
+      this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
+    this.toggleDarkMode(this.isDarkMode);
   }
 
-  toggleDarkMode() {
+  toggleDarkMode(isDark: boolean) {
     const element = document.querySelector('html');
     if (element) {
-      element.classList.toggle('my-app-dark');
-      this.isDarkMode = !this.isDarkMode;
+      const toggleClass = isDark ? 'my-app-dark' : 'my-app-light';
+      element.classList.remove(isDark ? 'my-app-light' : 'my-app-dark');
+      element.classList.add(toggleClass);
+      localStorage.setItem('prefers-color-scheme', isDark ? 'dark' : 'light');
+      this.isDarkMode = isDark;
     }
   }
 }
