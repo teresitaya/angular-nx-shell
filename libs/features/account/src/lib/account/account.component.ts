@@ -37,25 +37,17 @@ export class AccountComponent {
   private readonly _router = inject(Router);
 
   title = UserConsts.USER_ID + ' Account';
+  showPassword = false;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
   saving = false;
 
-  private generateToken(email: string, password: string): string {
-    // Create a timestamp for token uniqueness
-    const timestamp = new Date().getTime();
-    
-    // Combine email, password and timestamp
-    const rawToken = `${email}:${password}:${timestamp}`;
-    
-    // Convert to base64 and remove any non-alphanumeric characters
-    return btoa(rawToken)
-      .replace(/[^a-zA-Z0-9]/g, '')
-      .substring(0, 32); // Limit token length
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   validateForm() {
@@ -71,7 +63,7 @@ export class AccountComponent {
       // Simulate API call
       setTimeout(() => {
         if (email && password) {
-          const token = this.generateToken(email, password);
+          const token = btoa(`${email}:${password}:${new Date().getTime()}`);
           this._authService.setToken(token);
           this._router.navigate(['/dashboard']);
         }
