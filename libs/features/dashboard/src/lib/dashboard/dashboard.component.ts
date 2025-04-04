@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._themeService.theme$
       .pipe(takeUntil(this._destroy$))
       .subscribe((theme) => {
-        console.log('Theme changed:', theme);
         this.currentTheme = theme;
         this._cdr.detectChanges();
       });

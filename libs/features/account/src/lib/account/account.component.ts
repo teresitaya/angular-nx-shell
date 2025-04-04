@@ -11,4 +11,5 @@ import { UserConsts } from '@teresitaya/core';
 })
 export class AccountComponent {
   title = UserConsts.USER_ID + ' Account';
+
 }
