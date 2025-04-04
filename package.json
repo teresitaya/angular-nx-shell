@@ -6,6 +6,7 @@
     "build:all": "nx run-many --target=build --configuration=production",
     "test:all": "nx run-many --target=test",
     "lint:all": "nx run-many --target=lint",
+    "serve:all": "nx run-many --target=serve --parallel",
     "affected:graph": "nx graph --affected"
   },
   "private": true,
