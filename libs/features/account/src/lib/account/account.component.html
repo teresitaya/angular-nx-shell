@@ -3,7 +3,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" pFocusTrap class="px-12 py-4 flex flex-col gap-6" novalidate>
       <p-iconfield>
         <p-inputicon>
-          <i class="pi pi-user"> </i>
+          <i class="pi pi-at"></i>
         </p-inputicon>
         <input
           pInputText
@@ -14,22 +14,37 @@
           formControlName="email"
         />
       </p-iconfield>
+      
       <p-iconfield>
         <p-inputicon>
-          <i class="pi pi-password"></i>
+          <i class="pi pi-asterisk"></i>
         </p-inputicon>
         <input
           pInputText
-          id="input"
+          id="password"
           placeholder="Password"
-          [pAutoFocus]="true"
           [fluid]="true"
-          type="password"
+          [type]="showPassword ? 'text' : 'password'"
           formControlName="password"
         />
+        <p-inputicon (click)="togglePassword()" [ngStyle]="{'cursor': 'pointer'}" position="right">
+          <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+        </p-inputicon>
       </p-iconfield>
 
-        <p-button type="submit" label="Login" [rounded]="true" styleClass="w-full" (onClick)="onSubmit()" [disabled]="saving || (!loginForm.valid && !loginForm.dirty)" />
+      <p-button 
+        type="submit" 
+        label="Login" 
+        [rounded]="true" 
+        styleClass="w-full" 
+        (onClick)="onSubmit()" 
+        [loading]="saving"
+        [disabled]="saving || (!loginForm.valid && !loginForm.touched)"
+      >
+        <ng-template pTemplate="loadingicon">
+          <i class="pi pi-spin pi-spinner"></i>
+        </ng-template>
+      </p-button>
     </form>
   </p-card>
 </div>
