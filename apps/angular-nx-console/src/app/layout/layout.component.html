@@ -7,16 +7,7 @@
             <p-button  routerLink="/dashboard" label="Dashboard"></p-button>
         </div>
     </section>
-  
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-12">
-        <p-card>
-            content
-        </p-card>
-        <p-card>
-            content
-        </p-card>
-        <p-card>
-            content
-        </p-card>
-    </div>
+    <section class="flex flex-col w-full h-full overflow-hidden px-12">
+        <router-outlet></router-outlet>
+    </section>
 </div>

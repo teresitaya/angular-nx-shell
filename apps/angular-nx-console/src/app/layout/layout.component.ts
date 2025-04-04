@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule  } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterLink, ButtonModule, CardModule],
+  imports: [RouterLink, ButtonModule, RouterModule],
+  standalone: true,
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
+  styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
   isDarkMode = false;
