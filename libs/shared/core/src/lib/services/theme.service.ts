@@ -32,7 +32,9 @@ export class ThemeService {
     if (savedTheme === 'light' || savedTheme === 'dark') {
       return savedTheme;
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    this.setTheme(theme);
+    return theme;
   }
 
   private applyTheme(theme: Theme): void {

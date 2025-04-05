@@ -1,7 +1,18 @@
 <section class="flex justify-between items-center py-4 px-12 w-full fixed top-0 z-10 backdrop-blur-2xl">
     <h1 class="text-3xl font-bold underline">Angular NX Console</h1>
+    <div class="flex items-center justify-end gap-6 bg-surface-500 dark:bg-surface-800 rounded-4xl p-4">
+        <ng-container *ngFor="let link of links">
+            <p-button [routerLink]="link.link" [label]="link.label" [rounded]="true" [text]="!link.active" [severity]="!link.active ? 'secondary' : 'primary'" size="large"
+            styleClass="xl:min-w-54"
+            ></p-button>
+        </ng-container>
+    </div>
     <div class="flex items-center justify-end gap-4">
-        <p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()"/>
-        <p-button  routerLink="/dashboard" label="Dashboard"></p-button>
+        <p-button icon="pi pi-bell" [rounded]="true" [raised]="true" [text]="true" size="large"/>
+        <p-button
+        [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" [rounded]="true" [raised]="true" [text]="true" size="large"
+        (onClick)="toggleDarkMode()"
+        ></p-button>
+        <p-button icon="pi pi-user" [rounded]="true" [raised]="true" [text]="true" size="large"/>
     </div>
 </section>
