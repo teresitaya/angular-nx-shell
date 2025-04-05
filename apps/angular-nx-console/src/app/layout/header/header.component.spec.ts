@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { ThemeService } from '@teresitaya/core';
 import { ButtonModule } from 'primeng/button';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -29,7 +29,7 @@ describe('HeaderComponent', () => {
       imports: [
         HeaderComponent, 
         ButtonModule,
-        RouterTestingModule
+        RouterModule.forRoot([])   
       ],
       providers: [ThemeService]
     }).compileComponents();
