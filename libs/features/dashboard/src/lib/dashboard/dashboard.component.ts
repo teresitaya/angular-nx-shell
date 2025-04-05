@@ -4,10 +4,11 @@ import { CardComponent } from '@teresitaya/ui';
 import { UserConsts } from '@teresitaya/core';
 import { ThemeService } from '@teresitaya/core';
 import { Subject, takeUntil } from 'rxjs';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'lib-dashboard',
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, CardModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
