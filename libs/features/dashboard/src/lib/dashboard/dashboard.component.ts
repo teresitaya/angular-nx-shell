@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from '@teresitaya/ui';
 import { UserConsts } from '@teresitaya/core';
 import { ThemeService } from '@teresitaya/core';
 import { Subject, takeUntil } from 'rxjs';
@@ -8,7 +7,7 @@ import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'lib-dashboard',
-  imports: [CommonModule, CardComponent, CardModule],
+  imports: [CommonModule, CardModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
