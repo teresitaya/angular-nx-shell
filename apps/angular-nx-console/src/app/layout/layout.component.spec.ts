@@ -11,8 +11,9 @@ describe('LayoutComponent', () => {
   let themeService: ThemeService;
 
   beforeEach(async () => {
-    // Mock matchMedia
-    Object.defineProperty(window, 'matchMedia', {
+    // Mock matchMedia if not already defined
+    if (!window.matchMedia) {
+      Object.defineProperty(window, 'matchMedia', {
       writable: true,
       value: jest.fn().mockImplementation(query => ({
         matches: false,
@@ -25,6 +26,7 @@ describe('LayoutComponent', () => {
         dispatchEvent: jest.fn(),
       })),
     });
+    }
 
     await TestBed.configureTestingModule({
       imports: [

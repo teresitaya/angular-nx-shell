@@ -11,11 +11,12 @@ export class ThemeService {
   theme$: BehaviorSubject<Theme>;
 
   constructor() {
-    const initialTheme = this.getInitialTheme();
-    this._themeSubject = new BehaviorSubject<Theme>(initialTheme);
+    // Initialize the BehaviorSubject first
+    this._themeSubject = new BehaviorSubject<Theme>('light');
     this.theme$ = this._themeSubject;
-    
-    // Apply initial theme
+
+    // Then get and apply the initial theme
+    const initialTheme = this.getInitialTheme();
     this.applyTheme(initialTheme);
 
     // Listen to system theme changes
@@ -30,9 +31,12 @@ export class ThemeService {
   private getInitialTheme(): Theme {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light' || savedTheme === 'dark') {
+      this.setTheme(savedTheme);
       return savedTheme;
     }
-    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = prefersDark ? 'dark' : 'light';
     this.setTheme(theme);
     return theme;
   }
