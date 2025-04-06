@@ -8,10 +8,12 @@
         </ng-container>
     </div>
     <div class="flex items-center justify-end gap-4">
-        <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'" pTooltip="Notifications" tooltipPosition="bottom" styleClass="min-h-18 min-w-18">
+        <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'" pTooltip="Notifications" tooltipPosition="bottom" styleClass="min-h-18 min-w-18 relative">
             <ng-template pTemplate="icon">
                 <i class="pi pi-bell" style="font-size: 2rem"></i>
-                <span class="p-1 bg-primary text-white rounded-full absolute bottom-4 right-3"></span>
+                @if(hasUnreadNotifications()){
+                    <span class="px-2 p-1 bg-primary text-white rounded-full absolute bottom-3 right-1 text-xs">{{unreadCount()}}</span>
+                }
             </ng-template>
         </p-button>
         <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'"    
