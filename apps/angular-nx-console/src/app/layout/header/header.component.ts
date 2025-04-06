@@ -9,7 +9,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-header',
   imports: [
@@ -21,6 +22,7 @@ import { TooltipModule } from 'primeng/tooltip';
     BadgeModule,
     OverlayBadgeModule,
     TooltipModule,
+    MenuModule,
   ],
   templateUrl: './header.component.html',
   styles: [],
@@ -33,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { label: 'Policy Catalog', link: '/policies', active: false },
     { label: 'Integrations', link: '/integrations', active: false },
   ];
+  items: MenuItem[] | undefined;
 
   private readonly _themeService = inject(ThemeService);
   private readonly _router = inject(Router);
@@ -52,6 +55,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }));
       })
     );
+    this.items = [
+      { label: 'Profile', icon: 'pi pi-user' },
+      { label: 'Logout', icon: 'pi pi-power-off' }
+    ];
   }
 
   toggleDarkMode() {
