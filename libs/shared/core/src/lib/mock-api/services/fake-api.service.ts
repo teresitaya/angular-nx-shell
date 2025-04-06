@@ -25,15 +25,4 @@ export class FakeApiService {
     
     return of(stats).pipe(delay(this.FAKE_DELAY));
   }
-
-  markAlertAsRead(alertId: string): Observable<void> {
-    // Simulate marking an alert as read in the mock data
-    const alert = MOCK_DASHBOARD_STATS.recentAlerts.find(a => a.id === alertId);
-    if (alert) {
-      alert.read = true;
-    }
-    return of(undefined).pipe(delay(this.FAKE_DELAY));
-  }
-
-  // Add more fake API methods as needed
 }

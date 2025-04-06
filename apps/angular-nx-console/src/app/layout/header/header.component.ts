@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService, ThemeService } from '@teresitaya/core';
+import { AuthService, ThemeService, NotificationsStateService } from '@teresitaya/core';
+import { BadgeDirective } from 'primeng/badge';
 import { Subscription } from 'rxjs';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
@@ -20,14 +21,20 @@ import { MenuItem } from 'primeng/api';
     AvatarModule,
     AvatarGroupModule,
     BadgeModule,
-    OverlayBadgeModule,
-    TooltipModule,
     MenuModule,
+    TooltipModule,
+    OverlayBadgeModule,
+    BadgeDirective,
   ],
   templateUrl: './header.component.html',
   styles: [],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  private readonly _notificationsService = inject(NotificationsStateService);
+  
+  readonly hasUnreadNotifications = this._notificationsService.hasUnread;
+  readonly unreadCount = this._notificationsService.unreadCount;
+  
   isDarkMode = false;
   links = [
     { label: 'Dashboard', link: '/dashboard', active: true, hover: false },
