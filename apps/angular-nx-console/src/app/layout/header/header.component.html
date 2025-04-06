@@ -8,17 +8,25 @@
         </ng-container>
     </div>
     <div class="flex items-center justify-end gap-4">
-        <p-overlaybadge value="2">
-            <i class="pi pi-bell" style="font-size: 2rem" pTooltip="Notifications" tooltipPosition="bottom"></i>
-        </p-overlaybadge>        
-        <p-button icon="pi pi-bell" [rounded]="true" [raised]="true" [text]="true" size="large"
-        pTooltip="Notifications" tooltipPosition="bottom"/>
-        <p-button
-        [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" [rounded]="true" [raised]="true" [text]="true" size="large"
-        [pTooltip]="'Toggle ' + (isDarkMode ? 'Light' : 'Dark') + ' Mode'" tooltipPosition="bottom"
+        <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'" pTooltip="Notifications" tooltipPosition="bottom" styleClass="min-h-18 min-w-18">
+            <ng-template pTemplate="icon">
+                <i class="pi pi-bell" style="font-size: 2rem"></i>
+                <span class="p-1 bg-primary text-white rounded-full absolute bottom-4 right-3"></span>
+            </ng-template>
+        </p-button>
+        <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'"    
+        [pTooltip]="'Toggle ' + (isDarkMode ? 'Light' : 'Dark') + ' Mode'" tooltipPosition="bottom" styleClass="min-h-18 min-w-18"
         (onClick)="toggleDarkMode()"
-        ></p-button>
-      <p-avatar label="P" styleClass="mr-2 border-2 border-primary outline outline-offset-2 outline-primary/50" size="xlarge" shape="circle"/>
-
+        >
+        <ng-template pTemplate="icon">
+            <i [class]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" style="font-size: 2rem"></i>
+        </ng-template>
+        </p-button>
+    <div class="card flex justify-center">
+        <p-menu #menu [model]="items" [popup]="true"/>
+        <p-button (click)="menu.toggle($event)" [rounded]="true" [text]="true" [size]="'large'" [pTooltip]="'Profile'" tooltipPosition="bottom">
+            <p-avatar label="P"  size="xlarge" shape="circle" styleClass="border-2 border-primary outline outline-offset-0.5 outline-primary/50"/> 
+        </p-button>
+    </div>
     </div>
 </section>
