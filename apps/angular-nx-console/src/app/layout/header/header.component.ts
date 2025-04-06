@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { Router, RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { AuthService, ThemeService, NotificationsStateService } from '@teresitaya/core';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
@@ -51,14 +51,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._themeService.theme$.subscribe((theme) => {
       this.isDarkMode = theme === 'dark';
     });
+    // Set initial active state
+    this.updateActiveLink(this._router.url);
+
+    // Subscribe to route changes
     this._subscription.add(
-      this._router.events.subscribe(() => {
-        this.links = this.links.map((link) => ({
-          ...link,
-          active: link.link === this._router.url,
-          hover: false
-        }));
-      })
+      this._router.events
+        .pipe(
+          filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+        )
+        .subscribe((event) => {
+          this.updateActiveLink(event.url);
+        })
     );
     this.items = [
       { label: 'Profile', icon: 'pi pi-user' },
@@ -68,6 +72,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleDarkMode() {
     this._themeService.toggleTheme();
+  }
+
+  private updateActiveLink(currentUrl: string) {
+    this.links = this.links.map((link) => ({
+      ...link,
+      active: currentUrl.startsWith(link.link) && link.link !== '/' || currentUrl === link.link,
+      hover: false
+    }));
   }
 
   logout() {
