@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
 
   private readonly _cookieService = inject(CookieService);
+  private readonly _router = inject(Router);
 
   isAuthenticated(): boolean {
     return !!this.getToken();
@@ -28,5 +30,10 @@ export class AuthService {
 
   removeToken(): void {
     this._cookieService.delete(this.TOKEN_KEY);
+  }
+
+  logout(): void {
+    this.removeToken();
+    this._router.navigate(['/login']);
   }
 }
