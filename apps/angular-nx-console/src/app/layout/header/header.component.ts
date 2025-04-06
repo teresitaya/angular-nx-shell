@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
-import { ThemeService } from '@teresitaya/core';
+import { AuthService, ThemeService } from '@teresitaya/core';
 import { Subscription } from 'rxjs';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private readonly _themeService = inject(ThemeService);
   private readonly _router = inject(Router);
+  private readonly _authService = inject(AuthService);
 
   private readonly _subscription = new Subscription();
 
@@ -58,12 +59,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
     this.items = [
       { label: 'Profile', icon: 'pi pi-user' },
-      { label: 'Logout', icon: 'pi pi-power-off' }
+      { label: 'Logout', icon: 'pi pi-power-off', command: () => this.logout() }
     ];
   }
 
   toggleDarkMode() {
     this._themeService.toggleTheme();
+  }
+
+  logout() {
+    this._authService.logout();
   }
 
   ngOnDestroy(): void {
