@@ -6,6 +6,11 @@ import { ComingSoonComponent } from '@teresitaya/ui';
 export const appRoutes: Route[] = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
+  {
+    path: '',
     component: LayoutComponent,
     canActivate: [authGuard],
     children: [
@@ -25,7 +30,7 @@ export const appRoutes: Route[] = [
       {
         path: 'integrations',
         component: ComingSoonComponent
-      },  
+      },
     ],
   },
   {
@@ -34,7 +39,7 @@ export const appRoutes: Route[] = [
       import('@teresitaya/account').then((m) => m.AccountComponent),
   },
   {
-    path:'*',
+    path: '**',
     redirectTo: 'dashboard'
   }
 ];
