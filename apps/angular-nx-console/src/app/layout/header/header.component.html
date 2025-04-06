@@ -1,6 +1,6 @@
 <section class="flex justify-between items-center gap-4 py-6 px-12 w-full fixed top-0 z-10 backdrop-blur-2xl">
     <img src="images/logo.png" alt="Logo" class="sm:w-48 md:w-52 lg:w-64">
-    <div class="flex items-center justify-end gap-6 bg-surface-100 dark:bg-surface-800 rounded-4xl p-4">
+    <div class="flex items-center justify-end gap-6 dark:bg-surface-800 bg-surface-100 rounded-4xl p-4">
         <ng-container *ngFor="let link of links">
             <p-button [routerLink]="link.link" [label]="link.label" [rounded]="true" [text]="!(link.active || link.hover)" [severity]="!(link.active || link.hover) ? 'secondary' : 'primary'" size="large"
             styleClass="xl:min-w-54" (mouseenter)="link.hover = true" (mouseleave)="link.hover = false"
@@ -8,7 +8,7 @@
         </ng-container>
     </div>
     <div class="flex items-center justify-end gap-4">
-        <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'" pTooltip="Notifications" tooltipPosition="bottom" styleClass="min-h-18 min-w-18 relative">
+        <p-button [rounded]="true" [text]="true" [size]="'large'" severity="secondary"  pTooltip="Notifications" tooltipPosition="bottom" styleClass="min-h-18 min-w-18 relative">
             <ng-template pTemplate="icon">
                 <i class="pi pi-bell" style="font-size: 2rem"></i>
                 @if(hasUnreadNotifications()){
@@ -16,7 +16,7 @@
                 }
             </ng-template>
         </p-button>
-        <p-button [rounded]="true" [raised]="true" [text]="true" [size]="'large'"    
+        <p-button [rounded]="true" [text]="true" [size]="'large'" severity="secondary"  
         [pTooltip]="'Toggle ' + (isDarkMode ? 'Light' : 'Dark') + ' Mode'" tooltipPosition="bottom" styleClass="min-h-18 min-w-18"
         (onClick)="toggleDarkMode()"
         >
@@ -26,7 +26,7 @@
         </p-button>
     <div class="card flex justify-center">
         <p-menu #menu [model]="items" [popup]="true"/>
-        <p-button (click)="menu.toggle($event)" [rounded]="true" [text]="true" [size]="'large'" [pTooltip]="'Profile'" tooltipPosition="bottom">
+        <p-button (click)="menu.toggle($event)" [rounded]="true" [text]="true" [size]="'large'" [pTooltip]="'Profile'" tooltipPosition="bottom" severity="secondary">
             <p-avatar label="P"  size="xlarge" shape="circle" styleClass="border-2 border-primary outline outline-offset-0.5 outline-primary/50"/> 
         </p-button>
     </div>

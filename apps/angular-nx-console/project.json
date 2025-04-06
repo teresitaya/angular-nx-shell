@@ -19,7 +19,8 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/angular-nx-console/public"
+            "input": "apps/angular-nx-console/public",
+            "output": "."
           }
         ],
         "styles": ["apps/angular-nx-console/src/styles.css"],
