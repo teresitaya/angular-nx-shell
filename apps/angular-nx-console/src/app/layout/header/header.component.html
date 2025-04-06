@@ -1,6 +1,6 @@
-<section class="flex justify-between items-center py-4 px-12 w-full fixed top-0 z-10 backdrop-blur-2xl">
-    <h1 class="text-3xl font-bold underline">Angular NX Console</h1>
-    <div class="flex items-center justify-end gap-6 bg-surface-500 dark:bg-surface-800 rounded-4xl p-4">
+<section class="flex justify-between items-center gap-4 py-6 px-12 w-full fixed top-0 z-10 backdrop-blur-2xl">
+    <img src="images/logo.png" alt="Logo" class="sm:w-48 md:w-52 lg:w-64">
+    <div class="flex items-center justify-end gap-6 bg-surface-100 dark:bg-surface-800 rounded-4xl p-4">
         <ng-container *ngFor="let link of links">
             <p-button [routerLink]="link.link" [label]="link.label" [rounded]="true" [text]="!link.active" [severity]="!link.active ? 'secondary' : 'primary'" size="large"
             styleClass="xl:min-w-54"
@@ -8,11 +8,17 @@
         </ng-container>
     </div>
     <div class="flex items-center justify-end gap-4">
-        <p-button icon="pi pi-bell" [rounded]="true" [raised]="true" [text]="true" size="large"/>
+        <p-overlaybadge value="2">
+            <i class="pi pi-bell" style="font-size: 2rem" pTooltip="Notifications" tooltipPosition="bottom"></i>
+        </p-overlaybadge>        
+        <p-button icon="pi pi-bell" [rounded]="true" [raised]="true" [text]="true" size="large"
+        pTooltip="Notifications" tooltipPosition="bottom"/>
         <p-button
         [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" [rounded]="true" [raised]="true" [text]="true" size="large"
+        [pTooltip]="'Toggle ' + (isDarkMode ? 'Light' : 'Dark') + ' Mode'" tooltipPosition="bottom"
         (onClick)="toggleDarkMode()"
         ></p-button>
-        <p-button icon="pi pi-user" [rounded]="true" [raised]="true" [text]="true" size="large"/>
+      <p-avatar label="P" styleClass="mr-2 border-2 border-primary outline outline-offset-2 outline-primary/50" size="xlarge" shape="circle"/>
+
     </div>
 </section>
