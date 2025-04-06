@@ -30,10 +30,10 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit, OnDestroy {
   isDarkMode = false;
   links = [
-    { label: 'Dashboard', link: '/dashboard', active: true },
-    { label: 'Agents and Apps', link: '/agents', active: false },
-    { label: 'Policy Catalog', link: '/policies', active: false },
-    { label: 'Integrations', link: '/integrations', active: false },
+    { label: 'Dashboard', link: '/dashboard', active: true, hover: false },
+    { label: 'Agents and Apps', link: '/agents', active: false, hover: false },
+    { label: 'Policy Catalog', link: '/policies', active: false, hover: false },
+    { label: 'Integrations', link: '/integrations', active: false, hover: false },
   ];
   items: MenuItem[] | undefined;
 
@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.links = this.links.map((link) => ({
           ...link,
           active: link.link === this._router.url,
+          hover: false
         }));
       })
     );

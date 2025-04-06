@@ -2,8 +2,8 @@
     <img src="images/logo.png" alt="Logo" class="sm:w-48 md:w-52 lg:w-64">
     <div class="flex items-center justify-end gap-6 bg-surface-100 dark:bg-surface-800 rounded-4xl p-4">
         <ng-container *ngFor="let link of links">
-            <p-button [routerLink]="link.link" [label]="link.label" [rounded]="true" [text]="!link.active" [severity]="!link.active ? 'secondary' : 'primary'" size="large"
-            styleClass="xl:min-w-54"
+            <p-button [routerLink]="link.link" [label]="link.label" [rounded]="true" [text]="!(link.active || link.hover)" [severity]="!(link.active || link.hover) ? 'secondary' : 'primary'" size="large"
+            styleClass="xl:min-w-54" (mouseenter)="link.hover = true" (mouseleave)="link.hover = false"
             ></p-button>
         </ng-container>
     </div>
