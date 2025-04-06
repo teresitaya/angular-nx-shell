@@ -30,13 +30,18 @@ export class NotificationsStateService {
       .subscribe(response => this.notificationsState.set(response));
   }
 
-  markAllAsRead(): void {
-    this.fakeNotificationsService.markAllNotificationsAsRead()
+  markAsUnread(id: string): void {
+    this.fakeNotificationsService.updateNotification({ id, read: false })
       .subscribe(response => this.notificationsState.set(response));
   }
 
   deleteNotification(id: string): void {
     this.fakeNotificationsService.deleteNotification(id)
+      .subscribe(response => this.notificationsState.set(response));
+  }
+
+  markAllAsRead(): void {
+    this.fakeNotificationsService.markAllNotificationsAsRead()
       .subscribe(response => this.notificationsState.set(response));
   }
 }
