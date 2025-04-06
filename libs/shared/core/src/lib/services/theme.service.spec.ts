@@ -53,7 +53,7 @@ describe('ThemeService', () => {
       configurable: true
     });
     service = TestBed.inject(ThemeService);
-    expect(service.getCurrentTheme()).toBe('light');
+    expect(service.getCurrentTheme()).toBe('dark');
   });
 
   it('should use saved theme from localStorage when available', () => {
