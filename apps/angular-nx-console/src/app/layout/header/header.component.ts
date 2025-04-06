@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService, ThemeService, NotificationsStateService } from '@teresitaya/core';
-import { BadgeDirective } from 'primeng/badge';
 import { Subscription } from 'rxjs';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
-import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { TooltipModule } from 'primeng/tooltip';
 import { MenuModule } from 'primeng/menu';
@@ -20,11 +18,9 @@ import { MenuItem } from 'primeng/api';
     RouterLink,
     AvatarModule,
     AvatarGroupModule,
-    BadgeModule,
     MenuModule,
     TooltipModule,
     OverlayBadgeModule,
-    BadgeDirective,
   ],
   templateUrl: './header.component.html',
   styles: [],
