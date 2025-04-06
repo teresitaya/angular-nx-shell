@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { authGuard } from '@teresitaya/core';
+import { ComingSoonComponent } from '@teresitaya/ui';
 
 export const appRoutes: Route[] = [
   {
@@ -13,6 +14,18 @@ export const appRoutes: Route[] = [
         loadComponent: () =>
           import('@teresitaya/dashboard').then((m) => m.DashboardComponent),
       },
+      {
+        path: 'agents',
+        component: ComingSoonComponent
+      },
+      {
+        path: 'policies',
+        component: ComingSoonComponent
+      },
+      {
+        path: 'integrations',
+        component: ComingSoonComponent
+      },  
     ],
   },
   {
