@@ -51,7 +51,7 @@ export class DashboardToolbarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.filterForm = this._fb.group({
       searchQuery: new FormControl<string>(''),
-      timeframeSelect: new FormControl<TimeframeOption | null>(this.timeframeOptions[1]),
+      timeframeSelect: new FormControl<TimeframeOption | null>(null),
       applyTimeframe: new FormControl<boolean>(false)
     });
     
