@@ -5,12 +5,13 @@ import { ThemeService } from '@teresitaya/core';
 import { Subject, takeUntil } from 'rxjs';
 import { CardModule } from 'primeng/card';
 import { DashboardToolbarComponent } from '../dashboard-toolbar/dashboard-toolbar.component';
+import { DashboardWidgetsComponent } from '../dashboard-widgets/dashboard-widgets.component';
 
 @Component({
   selector: 'lib-dashboard',
-  imports: [CommonModule, CardModule, DashboardToolbarComponent],
+  imports: [CommonModule, CardModule, DashboardToolbarComponent, DashboardWidgetsComponent],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styles: [],
 })
 export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly _themeService = inject(ThemeService);

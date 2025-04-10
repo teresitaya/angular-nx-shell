@@ -1,7 +1,6 @@
 <section class="flex flex-col gap-4 w-full">
     <lib-dashboard-toolbar></lib-dashboard-toolbar>
     
-    <!-- Debug info to show the signals are working -->
     <div *ngIf="currentSearch || currentTimeframe" class="p-3 bg-gray-100 dark:bg-gray-800 rounded-md mb-2">
         <div *ngIf="currentSearch" class="mb-1">
             <span class="font-semibold">Current search:</span> {{ currentSearch }}
@@ -10,4 +9,5 @@
             <span class="font-semibold">Selected timeframe:</span> {{ currentTimeframe.label }}
         </div>
     </div>
+    <lib-dashboard-widgets></lib-dashboard-widgets>
 </section>

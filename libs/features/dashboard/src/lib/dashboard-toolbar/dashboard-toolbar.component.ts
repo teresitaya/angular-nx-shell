@@ -28,7 +28,7 @@ import { TimeframeOption } from '@teresitaya/core';
     ToggleSwitchModule
   ],
   templateUrl: './dashboard-toolbar.component.html',
-  styleUrl: './dashboard-toolbar.component.scss',
+  styles: []
 })
 export class DashboardToolbarComponent implements OnInit, OnDestroy {
   filterForm!: FormGroup;
