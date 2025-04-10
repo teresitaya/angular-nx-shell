@@ -30,13 +30,13 @@ const MyPreset = definePreset(Aura, {
       },
       dark: {
         surface: {
-          ground: '#141419',
+          ground: '#101015',
           section: '#202029',
-          card: '#202029',
-          overlay: '#202029',
+          card: '#1f2029',
+          overlay: '#1f2029',
         },
         base: {
-          content: '#141419',
+          content: '#101015',
         }
       },
     },
