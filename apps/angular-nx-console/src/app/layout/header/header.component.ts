@@ -32,6 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   readonly unreadCount = this._notificationsService.unreadCount;
   
   isDarkMode = false;
+  isMobile = false;
+  mobileMenuVisible = false;
+  
   links = [
     { label: 'Dashboard', link: '/dashboard', active: true, hover: false },
     { label: 'Agents and Apps', link: '/agents', active: false, hover: false },
@@ -62,16 +65,46 @@ export class HeaderComponent implements OnInit, OnDestroy {
         )
         .subscribe((event) => {
           this.updateActiveLink(event.url);
+          // Close mobile menu on navigation
+          this.mobileMenuVisible = false;
         })
     );
+    
     this.items = [
       { label: 'Profile', icon: 'pi pi-user' },
       { label: 'Logout', icon: 'pi pi-power-off', command: () => this.logout() }
     ];
+    
+    // Check initial screen size
+    this.checkScreenSize();
+    
+    // Listen for window resize events
+    window.addEventListener('resize', this.onResize.bind(this));
+    this._subscription.add({
+      unsubscribe: () => {
+        window.removeEventListener('resize', this.onResize.bind(this));
+      }
+    });
   }
 
   toggleDarkMode() {
     this._themeService.toggleTheme();
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuVisible = !this.mobileMenuVisible;
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth < 768; // md breakpoint in Tailwind is 768px
+  }
+
+  private onResize() {
+    this.checkScreenSize();
+    // Auto-close mobile menu on resize to desktop
+    if (!this.isMobile) {
+      this.mobileMenuVisible = false;
+    }
   }
 
   private updateActiveLink(currentUrl: string) {
