@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-
+import { SelectModule } from 'primeng/select';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 interface TimeframeOption {
   label: string;
   value: string;
@@ -21,10 +21,11 @@ interface TimeframeOption {
     ReactiveFormsModule,
     InputTextModule,
     DropdownModule,
-    InputSwitchModule,
     ButtonModule,
     InputGroupModule,
-    InputGroupAddonModule
+    InputGroupAddonModule,
+    SelectModule,
+    ToggleSwitchModule
   ],
   templateUrl: './dashboard-toolbar.component.html',
   styleUrl: './dashboard-toolbar.component.scss',
@@ -42,9 +43,9 @@ export class DashboardToolbarComponent implements OnInit {
   
   ngOnInit() {
     this.filterForm = this._fb.group({
-      searchQuery: [''],
-      timeframeSelect: [this.timeframeOptions[1].value], // Default to 7 days
-      applyTimeframe: [true]
+      searchQuery: new FormControl<string>(''),
+      timeframeSelect: new FormControl<TimeframeOption | null>(this.timeframeOptions[1]),
+      applyTimeframe: new FormControl<boolean>(false)
     });
     
    this.filterForm.get('searchQuery')?.valueChanges.subscribe(value => {
@@ -54,11 +55,15 @@ export class DashboardToolbarComponent implements OnInit {
     this.filterForm.get('applyTimeframe')?.valueChanges.subscribe(value => {
       if (value) {
         this.filterForm.get('timeframeSelect')?.enable();
-        this.filterForm.get('timeframeSelect')?.setValue(this.timeframeOptions[1].value);
+        this.filterForm.get('timeframeSelect')?.setValue(this.timeframeOptions[1]);
       } else {
         this.filterForm.get('timeframeSelect')?.disable();
         this.filterForm.get('timeframeSelect')?.reset();
       }
+    });
+
+    this.filterForm.get('timeframeSelect')?.valueChanges.subscribe(value => {
+      console.log('Timeframe selected:', value?.value);
     });
   }
   

@@ -10,18 +10,19 @@
       </p-inputgroup>
     </div>
     
-    <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-3/5 justify-end">
+    <div class="flex flex-col sm:flex-row items-center gap-8 w-full md:w-3/5 justify-end">
       <!-- Timeframe Toggle -->
-      <div class="flex items-center gap-2">
-        <label for="applyTimeframe" class="text-sm font-medium">Timeframe</label>
-        <p-inputSwitch formControlName="applyTimeframe" inputId="applyTimeframe"></p-inputSwitch>
+      <div class="flex items-start justify-center gap-4 mt-1">
+        <p-toggleswitch formControlName="applyTimeframe" inputId="applyTimeframe"
+        styleClass="scale-150"></p-toggleswitch>
+        <label for="applyTimeframe" class="text-lg">Timeframe</label>
       </div>
       
       <!-- Timeframe Dropdown -->
-      <div class="w-full sm:w-auto">
-        <label for="timeframeSelect" class="sr-only">Select Timeframe</label>
-        <p-dropdown [options]="timeframeOptions" formControlName="timeframeSelect" 
-          optionLabel="label" styleClass="w-full sm:w-48" inputId="timeframeSelect"></p-dropdown>
+      <div class="w-full md:w-2/5 lg:w-2/5 xl:w-1/5">
+        <p-select [options]="timeframeOptions" formControlName="timeframeSelect" 
+        styleClass="w-full"
+          optionLabel="label" inputId="timeframeSelect" placeholder="Select Timeframe"></p-select>
       </div>
     </div>
   </form>

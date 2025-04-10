@@ -158,7 +158,7 @@ const MyPreset = definePreset(Aura, {
         }
       }
     },
-    inputswitch: {
+    /* inputswitch: {
       slider: {
         borderRadius: '1rem',
         background: '#4a4b52'
@@ -166,7 +166,7 @@ const MyPreset = definePreset(Aura, {
       handle: {
         background: '#ffffff'
       }
-    },
+    }, */
     card: {
         colorScheme: {
             light: {
