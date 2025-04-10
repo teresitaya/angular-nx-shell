@@ -2,22 +2,22 @@ import { definePreset } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import { palette } from '@primeng/themes';
 
-const classiePallete = palette('#a28220');
+const classiePalette = palette('#A18220');
 
 const MyPreset = definePreset(Aura, {
   semantic: {
     primary: {
-      50:  classiePallete[50],
-      100: classiePallete[100],
-      200: classiePallete[200],
-      300: classiePallete[300],
-      400: classiePallete[400],
-      500: classiePallete[500],
-      600: classiePallete[600],
-      700: classiePallete[700],
-      800: classiePallete[800],
-      900: classiePallete[900],
-      950: classiePallete[950],
+      50:  classiePalette[50],
+      100: classiePalette[100],
+      200: classiePalette[200],
+      300: classiePalette[300],
+      400: classiePalette[400],
+      500: classiePalette[500],
+      600: classiePalette[600],
+      700: classiePalette[700],
+      800: classiePalette[800],
+      900: classiePalette[900],
+      950: classiePalette[950],
     },
     colorScheme: {
       light: {
@@ -41,6 +41,62 @@ const MyPreset = definePreset(Aura, {
       },
     },
   },
+  components: {
+    card: {
+        colorScheme: {
+            light: {
+                root: {
+                    background: '{surface.0}',
+                    color: '{surface.700}'
+                },
+                subtitle: {
+                    color: '{surface.500}'
+                }
+            },
+            dark: {
+                root: {
+                    background: 'linear-gradient(180deg, #24252F 0%, #1C1C24 100%)',
+                    color: '{surface.0}'
+                },
+                subtitle: {
+                    color: '{surface.400}'
+                }
+            }
+        }
+    },
+    button: {
+      colorScheme: {
+        light: {
+          primary: {
+            root: {
+              background: '{primary.500}',
+              color: '#ffffff',
+              border: '{primary.500}'
+            },
+            hover: {
+              background: '{primary.600}',
+              borderColor: '{primary.600}',
+              color: '#ffffff'
+            }
+          }
+        },
+        dark: {
+          primary: {
+            root: {
+              background: '{primary.500}',
+              color: '#ffffff',
+              border: '{primary.500}'
+            },
+            hover: {
+              background: '{primary.600}',
+              borderColor: '{primary.600}',
+              color: '#ffffff'
+            }
+          }
+        }
+      }
+    }
+  }
 });
 
 export default MyPreset;
